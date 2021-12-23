@@ -15,9 +15,6 @@
       </template>
       <CDropdownHeader tag="div" class="text-center" color="light">
         <strong>Tài khoản</strong>
-        <div>
-          <strong>{{ Meobeo }}</strong>
-        </div>
       </CDropdownHeader>
       <CDropdownItem @click="isShowChangePassword = true">
         <i class="fas fa-lock mr-2"></i>Đổi mật khẩu
@@ -142,13 +139,13 @@ export default {
   },
 
   mounted() {
-    this.getUser();
+    // this.getUser();
   },
 
   computed: {
     ...mapState({
-      currentUser: (state) => state.auth.currentUser,
-      user: (state) => state.systemUser.user,
+      // currentUser: (state) => state.auth.currentUser,
+      // user: (state) => state.systemUser.user,
     }),
     oldPasswordType() {
       return this.hideOldPassword ? "password" : "text";
@@ -175,14 +172,14 @@ export default {
     ...mapActions({
       actionLogout: "auth/actionLogout",
       actionChangePass: "auth/actionChangePass",
-      getUserInfo: "systemUser/getUserInfo",
+      // getUserInfo: "systemUser/getUserInfo",
     }),
-    async getUser() {
-      const id = this.currentUser.systemUserId;
-      await this.getUserInfo({
-        id: id,
-      });
-    },
+    // async getUser() {
+    //   const id = this.currentUser.systemUserId;
+    //   await this.getUserInfo({
+    //     id: id,
+    //   });
+    // },
     async handleChangePassword() {
       if (this.oldPassword === this.password) {
         this.resetForm();

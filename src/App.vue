@@ -47,11 +47,8 @@ export default {
     updateRequestHeader() {
       axios.interceptors.request.use(
         (config) => {
-          if (this.currentUser) {
-            config.headers.Authorization = `Bearer ${this.currentUser.token}`;
-          }
-          if (config.url.startsWith("https://mx-admin.javis.io")) {
-            config.headers.Authorization = "Basic YWRtaW46SmF2aXNAMjAyMA==";
+          if (this.currentUser && this.currentUser.auth_token) {
+            config.headers.Authorization = `Bearer ${this.currentUser.auth_token}`;
           }
           return config;
         },

@@ -81,6 +81,14 @@ export default {
       password: "",
     };
   },
+  computed: {
+    currentUser: (state) => state.auth.currentUser,
+  },
+  mounted() {
+    if (localStorage.getItem("currentUser") != null) {
+      this.$router.push("/");
+    }
+  },
   methods: {
     ...mapActions({
       actionLogin: "auth/actionLogin",

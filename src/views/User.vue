@@ -1,12 +1,12 @@
 <template>
   <div class="c-app">
-    <TheSidebar />
     <CWrapper>
       <TheHeader />
       <div class="c-body">
         <main class="c-main pt-3" style="background: white;">
           <CContainer fluid class="pl-3 pr-3">
             <CRow>
+              {{ titles }}
               <CCol col="12">
                 <CCardBody>
                   <CDataTable
@@ -23,21 +23,10 @@
                     sorter
                   >
                     <template #no="data">
-                      <td class="text-center">{{ data.index + 1 }}</td>
-                    </template>
-                    <!-- <template #action="{ item }">
                       <td class="text-center">
-                        <CButton
-                          color="info"
-                          sm
-                          square
-                          @click="openShow(item)"
-                          class="m-1"
-                        >
-                          Chi tiết
-                        </CButton>
+                        {{ data.index + 1 }}
                       </td>
-                    </template> -->
+                    </template>
                   </CDataTable>
                 </CCardBody>
               </CCol>
@@ -51,15 +40,13 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import TheSidebar from "@/containers/TheSidebar";
+import { mapActions, mapState } from "vuex";
 import TheHeader from "@/containers/TheHeader";
 import TheFooter from "@/containers/TheFooter";
 
 export default {
   name: "User",
   components: {
-    TheSidebar,
     TheHeader,
     TheFooter,
   },
@@ -85,15 +72,27 @@ export default {
       ],
     };
   },
+  computed: {
+    ...mapState({
+      currentUser: (state) => state.auth.currentUser,
+      titles: (state) => state.title.titles,
+      title: (state) => state.title.title,
+    }),
+  },
+  async mounted() {
+    await this.getListTitles();
+  },
   methods: {
     ...mapActions({
-      actionLogin: "auth/actionLogin",
+      getListTitles: "title/getListTitles",
+      deleteTitle: "title/deleteTitleById",
+      getTitleInfo: "title/getTitleInfo",
+      updateTitleInfo: "title/updateTitleInfo",
     }),
     pageChange(val) {
       this.$router.push({ query: { page: val } });
       this.activePage = val;
     },
-    openShow() {},
   },
 };
 </script>

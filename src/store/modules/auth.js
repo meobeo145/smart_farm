@@ -26,16 +26,8 @@ const actions = {
       context.commit('GET_CURRENT_USER_DETAIL', response)
     })
   },
-  actionLoginAdmin: (context, params) => {
-    return apiService.post('auth.loginAdmin', params).then((response) => {
-      context.commit('LOGIN_SUCCESS', response)
-    })
-  },
   actionResetPass: (context, params) => {
     return apiService.post('auth.resetPass', params)
-  },
-  actionSendEmail: (context, params) => {
-    return apiService.post('auth.sendEmail', params)
   },
   actionChangePass: (context, params) => {
     return apiService.post('auth.changePass', params)

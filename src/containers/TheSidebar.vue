@@ -11,10 +11,6 @@
     </CSidebarBrand>
 
     <CRenderFunction flat :content-to-render="$options.nav" />
-    <CSidebarMinimizer
-      class="d-md-down-none"
-      @click.native="$store.commit('page/set', ['sidebarMinimize', !minimize])"
-    />
   </CSidebar>
 </template>
 
@@ -27,9 +23,6 @@ export default {
   computed: {
     show() {
       return this.$store.state.page.sidebarShow;
-    },
-    minimize() {
-      return this.$store.state.page.sidebarMinimize;
     },
   },
 };
