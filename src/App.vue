@@ -21,10 +21,11 @@ export default {
         return response;
       },
       (error) => {
+        console.log(error + "eror");
         const errorStatus = _.get(error, "response.status");
         if (errorStatus === 403) {
           this.$router.push("/");
-        } else if (errorStatus === 401) {
+        } else if (errorStatus === 422) {
           this.actionLogout().then(() => {
             this.$router.push("/login", () => {});
           });
