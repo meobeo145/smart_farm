@@ -2,11 +2,14 @@ import Vue from "vue";
 import Router from "vue-router";
 
 // Containers
+const TheContainer = () => import('@/containers/TheContainer')
 const Login = () => import("@/views/Login");
 const ForgotPassword = () => import('@/views/ForgotPassword')
 
 //User
 const User = () => import("@/views/User");
+
+const More = () => import("@/views/More");
 
 Vue.use(Router);
 
@@ -24,7 +27,7 @@ function configRoutes() {
       path: '/',
       redirect: '/user',
       name: 'Trang chủ',
-      component: User,
+      component: TheContainer,
       children: [
         {
           path: 'user',
@@ -37,6 +40,23 @@ function configRoutes() {
             {
               path: '',
               component: User,
+            },
+          ],
+        },
+        {
+          path: 'more',
+          meta: {
+            label: 'danh mục tham khảo',
+          },
+          component: {
+            render(c) {
+              return c('router-view')
+            },
+          },
+          children: [
+            {
+              path: '',
+              component: More,
             },
           ],
         },

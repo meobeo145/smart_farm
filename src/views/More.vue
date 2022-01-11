@@ -40,26 +40,53 @@
 import { mapActions, mapState } from "vuex";
 
 export default {
-  name: "User",
+  name: "More",
   data() {
     return {
       fields: [
         { key: "no", label: "STT", _style: "width:30px; text-align: center;" },
         {
-          key: "nameDevice",
-          label: "Tên thiết bị",
+          key: "treeSpecies",
+          label: "Loài cây",
         },
         {
-          key: "information",
-          label: "Thông tin",
+          key: "light",
+          label: "Độ sáng",
+          _style: "text-align: center",
+          sorter: false,
+        },
+        {
+          key: "pH",
+          label: "Nồng độ pH",
+          _style: "text-align: center",
+          sorter: false,
+        },
+        {
+          key: "ppm",
+          label: "Nồng độ ppm",
           _style: "text-align: center",
           sorter: false,
         },
       ],
       listDeviceFilter: [
-        { nameDevice: "Cảm biến mực nước", information: "Mức 5" },
-        { nameDevice: "Cảm biến ánh sáng", information: "Độ rọi: 1500Lux" },
-        { nameDevice: "Nồng độ dinh dưỡng hòa tan", information: "1000ppm" },
+        {
+          treeSpecies: "Húng quế",
+          light: "Ánh sáng mạnh",
+          pH: "5.5 - 6.5",
+          ppm: "700 ~ 1120",
+        },
+        {
+          treeSpecies: "Đậu cove",
+          light: "Ánh sáng mạnh",
+          pH: "6.0",
+          ppm: "1400 ~ 2800",
+        },
+        {
+          treeSpecies: "Nồng độ dinh dưỡng hòa tan",
+          light: "Ánh sáng mạnh, vừa",
+          pH: "6 - 6.8",
+          ppm: "1900 ~ 2450",
+        },
       ],
     };
   },
